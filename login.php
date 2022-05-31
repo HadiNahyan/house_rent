@@ -17,7 +17,7 @@
 
 <body>
     <section>
-        <a class="hNav" href="home.php">Home</a>
+        <a class="hNav" href="index.php">Home</a>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
