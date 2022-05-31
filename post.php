@@ -20,7 +20,7 @@ $mob=$_GET["id"];
       <a class="navbar-brand" href="show.php">Rent A House :) </a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.php">Home</a></li>
+      <li class="active"><a href="index.php">Home</a></li>
       <li><a href="signUp.php">Sign Up</a></li>
       <li><a href="login.php">Post Ad</a></li>
     </ul>
