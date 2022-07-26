@@ -16,15 +16,9 @@ $mob=$_GET["id"];
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="show.php">Rent A House :) </a>
-    </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="signUp.php">Sign Up</a></li>
-      <li><a href="login.php">Post Ad</a></li>
+      <li class="active"><a href="home.php">sign out</a></li>
     </ul>
-   <a href="show.php"> <button class="btn btn-danger navbar-btn">Find House</button></a>
   </div>
 </nav>
 <h2 style="    font-size: 240%;

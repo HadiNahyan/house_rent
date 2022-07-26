@@ -92,26 +92,53 @@ if(isset($_POST['sButton']))
   }
       else{
         $query="select * from house";
-        $res=mysqli_query($link,$query);
-       while($rows=mysqli_fetch_assoc($res))
-        {
-            ?>
-            <tr>
-                <td><?php echo $rows['Area'] ?></td>
-                <td><?php echo $rows['Cost'] ?></td>
-                <td><?php echo $rows['Floor'] ?></td>
-                <td><?php echo $rows['BedRoom'] ?></td>
-                <td><?php echo $rows['BathRoom'] ?></td>
-                <td><?php echo $rows['Corridore'] ?></td>
-                <td><?php echo $rows['Gas'] ?></td>
-                <td><?php echo $rows['Contact'] ?></td>
-    
-            </tr>
-            <?php
-          
-        }
-      }
-    ?>
+       $res=mysqli_query($link,$query);
+      while($rows=mysqli_fetch_assoc($res))
+       {
+           ?>
+    <div class="row" style="
+       width: 100%;
+    background-color: #272534;
+    overflow-x: hidden;
+    border-radius: 16px;
+    margin-bottom: 0.4%;
+    ">
+        <div class="slide" style="    width: 45%;
+    display: flex;
+    overflow-y: hidden;
+    float: left;
+    height: 47vh;
+    padding: 0%;">
+           <?php
+                $iQuery="select * from images where ID='$rows[ID]'";
+                $iRes=mysqli_query($link,$iQuery);
+                while($iRows=mysqli_fetch_assoc($iRes))
+                {
+                    echo  "<img src='{$iRows['Dir']}' width='100%'>";
+                }
+                ?>
+                  </div>
+    <div style="position: relative;
+    text-align: center;
+    font-size: 189%;
+    color: white;
+    padding: 1%;
+">
+        <?php echo "Area: $rows[Area]<br>";
+         echo "Rent: $rows[Cost]<br>";
+       echo  "Floor:$rows[Floor]<br>";
+         echo "BedRoom: $rows[BedRoom]<br>"; 
+       echo  "BathRoom: $rows[BathRoom]<br>"; 
+       echo  "Corridore: $rows[Corridore]<br>"; 
+        echo   "Gas: $rows[Gas]<br>";
+        echo "Contact: $rows[Contact]<br>";?>
+       <a href="mailt.php?id=<?php echo $rows["ID"];?>&cid=<?php echo $rows["Contact"];?>"><button type="button" class="btnD">Book This House</buttn></a>
+    </div>
+    </div>
+    <?php
+       }
+    }
+        ?>
   </table>
 </div>
 <?php

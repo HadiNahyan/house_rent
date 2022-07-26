@@ -1,8 +1,35 @@
+<?php
+if(isset($_POST["lg"]))
+{
+	$email=$_POST["un"];
+	$pass=$_POST["ps"];
+	$link=mysqli_connect("localhost","root","");
+	mysqli_select_db($link,"hrdb");
+			$res=mysqli_query($link,"select Contact from users where Email='$email' && Password='$pass'");
+			$rows=mysqli_fetch_assoc($res);
+		    $c=mysqli_num_rows($res);
+			if($c==0)
+			{
+			?>
+			<div class="fail" style="padding:2%;font-size:180%; position:relative;left:35%;">
+			<strong style="color:red;">Invalid</strong> Username Or Password.
+			</div>
+			<?php
+			}
+		else{
+            $sql="select count(*) as total from users where Email='$email' && Password='$pass'";
+            $fol=$link->query($sql);
+            $_session['Email']=$email;
+            header("location:ad.php?id=$rows[Contact]");
+		}	
+		}
+		?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Login 04</title>
+    <title>Login form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,7 +44,6 @@
 
 <body>
     <section>
-        <a class="hNav" href="index.php">Home</a>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
@@ -78,34 +104,7 @@
             </div>
         </div>
     </section>
-    <?php
-if(isset($_POST["lg"]))
-{
-	$email=$_POST["un"];
-	$pass=$_POST["ps"];
-	$link=mysqli_connect("localhost","root","");
-	mysqli_select_db($link,"hrdb");
-			$res=mysqli_query($link,"select Contact from users where Email='$email' && Password='$pass'");
-			$rows=mysqli_fetch_assoc($res);
-		    $c=mysqli_num_rows($res);
-			if($c==0)
-			{
-			?>
-			<div class="fail" style="padding:2%;font-size:180%; position:relative;left:35%;">
-			<strong style="color:red;">Invalid</strong> Username Or Password.
-			</div>
-			<?php
-			}
-		else{
-			?>
-<script type="text/javascript">
-window.location="ad.php?id=<?php echo $rows["Contact"]?>";
-</script>
-<?php
-		}
-		
-		}
-		?>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>

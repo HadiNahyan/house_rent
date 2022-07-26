@@ -39,16 +39,12 @@ while($row=mysqli_fetch_array($res))
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="show.php">Rent A House :) </a>
-    </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="signUp.php">Sign Up</a></li>
-      <li><a href="login.php">Post Ad</a></li>
+      <li class="active"><a href="home.php">sign out</a></li>
     </ul>
   </div>
-</nav><h2 style="    font-size: 240%;
+</nav>
+<h2 style="    font-size: 240%;
     width: fit-content;
     border: double;
     padding: 0.5%;
@@ -120,6 +116,8 @@ while($row=mysqli_fetch_array($res))
                         placeholder="01828000000" value="<?php echo $cn ?>">
                 </div>
             </div>
+            <label for="files">Select At Least 3 images</label>
+            <input type="file" id="files" name="images[]"  multiple required>
             <button type="submit"  name="update" class="bt">Update ad</button>
         </form>
 
@@ -128,13 +126,23 @@ while($row=mysqli_fetch_array($res))
   {
       $cn=$_POST['con'];
     mysqli_query($link,"update house set Area='$_POST[area]',Cost='$_POST[rent]',Floor='$_POST[floor]',BedRoom='$_POST[bed]',BathRoom='$_POST[bath]',Corridore='$_POST[cord]',Gas='$_POST[gas]',Contact='$_POST[con]'where ID=$id"); 
-
+    $idP=$id;
+    $img='';
+    foreach($_FILES['images'] ['name']as $key => $image){
+        $imageName= $_FILES['images']['name'][$key];
+        $imageTmpName= $_FILES['images']['tmp_name'][$key];
+        $directory='images/'.$imageName;
+        if(move_uploaded_file($imageTmpName, $directory)){
+         $com="update images set Name='$imageName',Dir='$directrory' where ID=$idp";
+          $result= mysqli_query($link,$com);
+        }
+       $result= move_uploaded_file($imageTmpName, $directory.$imageName);
+    }
  ?>
  <script type="text/javascript">
    window.location="ad.php?id=<?php echo $cn ;?>";
   </script>
   <?php
-
 }
 ?>
 </div>

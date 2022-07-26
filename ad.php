@@ -6,7 +6,7 @@ $con=$_GET['id'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Your Ads</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styl.css">
@@ -18,21 +18,15 @@ $con=$_GET['id'];
 <body class="bd">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="show.php">Rent A House :) </a>
-    </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="signUp.php">Sign Up</a></li>
-      <li><a href="login.php">Post Ad</a></li>
+      <li class="active"><a href="home.php">sign out</a></li>
     </ul>
-   <a href="show.php"> <button class="btn btn-danger navbar-btn">Find House</button></a>
   </div>
 </nav>
 
 <div class="cont">
 <h1 class="hd1">Houses To Rent</h1>
-<h2 class="hd1">Find The Best House for you to Rent<a href="post.php?id=<?php echo $con ?>" class=pBtn>Click to Post An Ad </a></h2>
+<h2 class="hd1"><a href="post.php?id=<?php echo $con ?>" class=pBtn>Click to Post An Ad </a></h2>
   <table class="tab">
       <tr>
         <th>Area</th>

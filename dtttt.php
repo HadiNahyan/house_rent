@@ -3,34 +3,52 @@ include "conn.php";
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <style>
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: grey; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #181e1ea6; 
-}
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: grey;
+    }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: black; 
-}
-</style>
-    </head>
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #181e1ea6;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: black;
+    }
+    </style>
+</head>
 <title>All Houses to rent</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body style="overflow-x:hidden;background-color:black;">
-<?php
+<div class="cont">
+<h1 class="hd1">Houses To Rent</h1>
+<form action="" method="post">
+<div class="sr">
+<input type="text" name="search" value="<?php  
+if(isset($_POST['sButton']))
+    {
+      $sr=$_POST['search'];
+      echo $sr;
+    }
+      else{
+        echo "";
+      }?>"class="sBar"  placeholder="Search house by Area or Cost">
+<button type="submit" name=" sButton"class="sBtn">Search
+</button>
+</div></form>
+<h2>Find The Best House for you to Rent</h2>
+    <?php
        $query="select * from house";
        $res=mysqli_query($link,$query);
       while($rows=mysqli_fetch_assoc($res))
@@ -49,7 +67,7 @@ include "conn.php";
     float: left;
     height: 47vh;
     padding: 0%;">
-           <?php
+            <?php
                 $iQuery="select * from images where ID='$rows[ID]'";
                 $iRes=mysqli_query($link,$iQuery);
                 while($iRows=mysqli_fetch_assoc($iRes))
@@ -57,14 +75,14 @@ include "conn.php";
                     echo  "<img src='{$iRows['Dir']}' width='100%'>";
                 }
                 ?>
-                  </div>
-    <div style="position: relative;
+        </div>
+        <div style="position: relative;
     text-align: center;
     font-size: 189%;
     color: white;
     padding: 1%;
 ">
-        <?php echo "Area: $rows[Area]<br>";
+            <?php echo "Area: $rows[Area]<br>";
          echo "Rent: $rows[Cost]<br>";
        echo  "Floor:$rows[Floor]<br>";
          echo "BedRoom: $rows[BedRoom]<br>"; 
@@ -72,8 +90,9 @@ include "conn.php";
        echo  "Corridore: $rows[Corridore]<br>"; 
         echo   "Gas: $rows[Gas]<br>";
         echo "Contact: $rows[Contact]<br>";?>
-       <a href="mailt.php?id=<?php echo $rows["ID"];?>&cid=<?php echo $rows["Contact"];?>"><button type="button" class="btnD">Book This House</buttn></a>
-    </div>
+            <a href="mailt.php?id=<?php echo $rows["ID"];?>&cid=<?php echo $rows["Contact"];?>"><button type="button"
+                    class="btnD">Book This House</buttn></a>
+        </div>
     </div>
     <?php
        }
